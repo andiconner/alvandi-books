@@ -8,10 +8,12 @@ import {
   } from "@material-ui/icons";
   import styled from "styled-components";
   import logo from "../images/logo.svg";
+  import { mobile } from "../utils/responsive";
 
   
   const Container = styled.div`
     display: flex;
+    ${mobile({ flexDirection: "column" })}
     
   `;
   
@@ -47,7 +49,7 @@ import {
   const Center = styled.div`
     flex: 1;
     padding: 20px;
-   
+    ${mobile({ display: "none" })}
   `;
   
   const Title = styled.h3`
@@ -71,6 +73,7 @@ import {
   const Right = styled.div`
     flex: 1;
     padding: 20px;
+    ${mobile({ backgroundColor: "#d6f3f9" })}
     
   `;
   

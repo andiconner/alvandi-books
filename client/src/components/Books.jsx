@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { allBooks } from "../data";
+import { allBooks } from "../utils/data";
 import Book from "./Book";
 
 const Container = styled.div`
