@@ -43,11 +43,56 @@ export const categories = [
     },
   ];
 
-  export const popularBooks = [
+  export const bestsellers = [
+   
+    {
+      id:2,
+      img:"https://i.ibb.co/d7LM3VN/H-2.jpg",
+      authors:"Anna Malaika Tubbs",
+      description: "Martin Luther King, Jr., Malcolm X and James Baldwin, three men of one generation who changed history, each of whom acknowledged their debts to their mothers as influences crucial to their paths. And yet, these mothers — Louise, Alberta and Berdis — like so many Black women throughout history, have until now remained largely unknown and unacknowledged. Who were these unsung Black mothers? What were their own journeys and what were the lessons they taught? Intimate and arching in scope, The Three Mothers is celebratory, revelatory and surprising. A remarkable book.",
+      title:"The Three Mothers: How the Mothers of Martin Luther King, Jr., Malcolm X, and James Baldwin Shaped a Nation",
+      category: "non-fiction", 
+      price: "$15.99",
+    },
+    
+    {
+      id:7,
+      img:"https://i.ibb.co/4YcbjmQ/H-7.jpg",
+      authors: "Stuart Woods",
+      description: "In this latest adrenaline-charged thriller from #1 New York Times bestselling author Stuart Woods, Stone Barrington takes on a vengeful rival. Stone Barrington is looking forward to some quiet time in New York City, until he is asked to transport precious, top-secret cargo across the Atlantic. Taking on the challenge, Stone flies off unaware of what—or who—he is bringing with him. ",
+      title:"A Safe House (Stone Barrington Series #61)",
+      category: "fiction", 
+      price: "$14.99",
+    },
+    {
+      id:8,
+      img:"https://i.ibb.co/LZYhnK4/H-8.jpg",
+      authors: "Calla Henkel",
+      description: "Two American students abroad find themselves at the center of murder and celebrity. Henkel brilliantly stages a cat and mouse game between a well-known thriller novelist and two art students, one that explores the intensity of female friendships, millennial life, and identity.",
+      title:"Other People's Clothes",
+      category: "fiction", 
+      price: "$21.00",
+    },
+  
+   
+    {
+      id:11,
+      img:"https://i.ibb.co/hVKQ0h8/H-11.jpg",
+      authors: "Marcus Pfister, J Alison James (Translator)",
+      description: "The Rainbow Fish is an international best-seller and a modern classic. The rainbow fish with its iridescent scales is the most beautiful fish in the whole ocean. But since he is also vain and proud, he becomes more and more lonely over time. Then he realizes that you can’t win friends through beauty. He overcomes his pride and begins to distribute his glitter scales to the other fish.",
+      title:"The Rainbow Fish",
+      category: "kids",
+      price: "$18.95", 
+    },
+    
+
+  ]
+
+  export const allBooks = [
     {
       id:1,
       img:"https://i.ibb.co/GVWgj8J/H-1.jpg",
-      authors:"Julian Sancton",
+      authors:"by Julian Sancton",
       description: "Meticulously researched and realized, with a deep novelistic flare, Madhouse at the End of the Earth reconstructs the action-packed survival story of an early expedition to the South Pole. Amundson, Cook and an inexperienced, undisciplined crew, on an ill-fated ship, imprisoned in the Antarctic ice and darkness. This tale of adventure, excitement and, indeed, terror will captivate those who were drawn to The Lost City of Z, In the Kingdom of Ice and In the Heart of the Sea. Julian Sancton has gifted us an insanely gripping book from start to finish.",
       title:"Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
       category: "non-fiction",
@@ -152,6 +197,33 @@ export const categories = [
       title:"The Day the Crayons Quit",
       category: "kids",
       price: "$14.99", 
+    },
+    {
+      id:13,
+      img:"https://i.ibb.co/F8xsBNN/H-13.jpg",
+      authors: "by Dolly Parton and James Patterson, Dolly Parton, James Patterson",
+      description: "James Patterson AND Dolly Parton in the same room is enough to give pause. But the thought of them writing a book together? We can just about hear Dolly’s voice come through here as she teams up with Patterson for their writing duo debut. A lot of suspense plus the life of a musician and the songs that make your heart ache. We’ve already put the needle on the record, flipped it over AND then flipped it over AGAIN. Repeat plays. Repeat reads.",
+      title:"Run Rose Run",
+      category: "fiction",
+      price: "$20.99", 
+    },
+    {
+      id:14,
+      img:"https://i.ibb.co/dMnPbLk/H-14.jpg",
+      authors: "by Greer Hendricks, Sarah Pekkanen",
+      description: "A psychological thriller here that will have you gnawing at your fingernails asking, WHAT were they all thinking?!. Simply riveting — as such suspense should be.",
+      title:"The Golden Couple",
+      category: "fiction",
+      price: "$23.99", 
+    },
+    {
+      id:15,
+      img:"https://i.ibb.co/RPscMBx/H-15.jpg",
+      authors: "by Arthur C. Brooks",
+      description: "From Strength to Strength: Finding Success, Happiness, and Deep Purpose in the Second Half of Life",
+      title:"The Day the Crayons Quit",
+      category: "non-fiction",
+      price: "$24.30", 
     },
 
   ]

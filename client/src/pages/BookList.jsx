@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
-//import Products from "../components/Products";
+import Books from "../components/Books";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 
@@ -41,20 +41,17 @@ const BookList = () => {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>DRAMA</Title>
+      <Title>BOOKS</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Books:</FilterText>
           <Select>
             <Option disabled selected>
-              Color
+              Category
             </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
+            <Option>Fiction</Option>
+            <Option>Non-Fiction</Option>
+            <Option>Kids</Option>
           </Select>
          
         </Filter>
@@ -67,8 +64,8 @@ const BookList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-     
-      <Newsletter />
+      <Books/>
+      <Newsletter/>
       <Footer />
     </Container>
   );
