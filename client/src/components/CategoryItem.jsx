@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
@@ -49,7 +50,11 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Button>
+          <Link to="/books">
+          SHOP NOW
+          </Link>
+        </Button>
       </Info>
     </Container>
   );
