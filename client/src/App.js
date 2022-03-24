@@ -8,8 +8,9 @@ import Signup from './pages/Signup';
 
 
 function App() {
+  const user = true
   return (
-    <Cart/>
+    <Home/>
   );
 }
 

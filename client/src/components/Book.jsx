@@ -5,6 +5,7 @@ import {
   } from "@material-ui/icons";
   import styled from "styled-components";
   
+  
   const Info = styled.div`
     opacity: 0;
     width: 100%;

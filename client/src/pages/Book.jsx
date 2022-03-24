@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
 
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -87,36 +88,37 @@ const Button = styled.button`
 `;
 
 const Book = () => {
-  return (
-    <Container>
-      <Navbar />
-      <Announcement />
-      <Wrapper>
-        <ImgContainer>
-          <Image src="https://i.ibb.co/GVWgj8J/H-1.jpg" />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night</Title>
-          <Authors>by Julian Sancton</Authors>
-          <Desc>
-          Meticulously researched and realized, with a deep novelistic flare, Madhouse at the End of the Earth reconstructs the action-packed survival story of an early expedition to the South Pole. Amundson, Cook and an inexperienced, undisciplined crew, on an ill-fated ship, imprisoned in the Antarctic ice and darkness. This tale of adventure, excitement and, indeed, terror will captivate those who were drawn to The Lost City of Z, In the Kingdom of Ice and In the Heart of the Sea. Julian Sancton has gifted us an insanely gripping book from start to finish.
-          </Desc>
-          <Price>$ 13.99</Price>
-          
-          <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-      <Newsletter />
-      <Footer />
-    </Container>
-  );
-};
+    return (
+      <Container>
+        <Navbar />
+        <Announcement />
+        <Wrapper>
+          <ImgContainer>
+            <Image src="https://i.ibb.co/GVWgj8J/H-1.jpg" />
+          </ImgContainer>
+          <InfoContainer>
+            <Title>Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night</Title>
+            <Authors>by Julian Sancton</Authors>
+            <Desc>
+            Meticulously researched and realized, with a deep novelistic flare, Madhouse at the End of the Earth reconstructs the action-packed survival story of an early expedition to the South Pole. Amundson, Cook and an inexperienced, undisciplined crew, on an ill-fated ship, imprisoned in the Antarctic ice and darkness. This tale of adventure, excitement and, indeed, terror will captivate those who were drawn to The Lost City of Z, In the Kingdom of Ice and In the Heart of the Sea. Julian Sancton has gifted us an insanely gripping book from start to finish.
+            </Desc>
+            <Price>$ 13.99</Price>
+            
+            <AddContainer>
+              <AmountContainer>
+                <Remove />
+                <Amount>1</Amount>
+                <Add />
+              </AmountContainer>
+              <Button>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+        <Newsletter />
+        <Footer />
+      </Container>
+    );
+  };
+  
 
 export default Book;

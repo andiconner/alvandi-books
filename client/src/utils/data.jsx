@@ -30,16 +30,19 @@ export const categories = [
       id: 1,
       img: "https://i.ibb.co/cg3L378/category-1.png",
       title: "FICTION",
+      cat: "fiction"
     },
     {
       id: 2,
       img: "https://i.ibb.co/MDNBvgJ/category-2.png",
       title: "NON-FICTION",
+      cat: "non-fiction"
     },
     {
       id: 3,
       img: "https://i.ibb.co/YXrBQyw/category-img.png",
       title: "KIDS",
+      cat: "kids"
     },
   ];
 
