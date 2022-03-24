@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
@@ -5,6 +7,8 @@ import Books from "../components/Books";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../utils/responsive";
+import {useState } from "react";
+
 
 const Container = styled.div``;
 
@@ -39,35 +43,29 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
+
 const BookList = () => {
+  const [category, setCategory] = useState("")
+
   return (
     <Container>
-      <Navbar />
-      <Announcement />
       <Title>BOOKS</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Books:</FilterText>
-          <Select>
-            <Option disabled selected>
+          <Select value={category} onChange={(event) => setCategory(event.target.value)}>
+            <Option>
               Category
             </Option>
-            <Option>Fiction</Option>
-            <Option>Non-Fiction</Option>
-            <Option>Kids</Option>
+            <Option value="fiction">Fiction</Option>
+            <Option value = "non-fiction">Non-Fiction</Option>
+            <Option value = "kids">Kids</Option>
           </Select>
          
         </Filter>
-        <Filter>
-          <FilterText>Sort Books:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
-          </Select>
-        </Filter>
+        
       </FilterContainer>
-      <Books/>
+      <Books category={category}/>
       <Newsletter/>
       <Footer />
     </Container>
@@ -75,3 +73,4 @@ const BookList = () => {
 };
 
 export default BookList;
+

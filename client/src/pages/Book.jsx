@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -90,7 +92,6 @@ const Button = styled.button`
 const Book = () => {
     return (
       <Container>
-        <Navbar />
         <Announcement />
         <Wrapper>
           <ImgContainer>

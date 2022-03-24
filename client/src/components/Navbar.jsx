@@ -3,7 +3,8 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import logo from "../images/logo.svg";
-import { mobile } from '../utils/responsive'
+import { mobile } from '../utils/responsive';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -23,12 +24,13 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile({ display: "none" })}
 `;
 
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })}
+  
 `;
 
 const SearchContainer = styled.div`
@@ -37,6 +39,7 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
   padding: 5px;
+
 `;
 
 const Input = styled.input`
@@ -46,7 +49,8 @@ const Input = styled.input`
 
 const Center = styled.div`
   flex: 1;
-  text-align: center; 
+  text-align: center;
+  ${mobile({ marginLeft: "0" })} 
 `;
 
 const Logo = styled.h1`
@@ -66,9 +70,13 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  ${mobile({ fontSize: "10px", marginLeft: "10px" })}
   
 `;
+const StyledLink  = styled(Link)`
+${mobile({ fontSize: "10px", marginLeft: "10px" })}
+`;
+
 
 const Navbar = () => {
   return (
@@ -89,11 +97,24 @@ const Navbar = () => {
             </Logo>
         </Center>
         <Right>
-          <MenuItem>SIGN UP</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
+            <StyledLink to="/books">
+              BOOKS
+            </StyledLink>
+          </MenuItem>
+          <MenuItem>
+            <StyledLink to="/signup">
+              SIGN UP
+            </StyledLink>
+          </MenuItem>
+          <MenuItem>
+            <StyledLink to="/login">
+              SIGN IN
+            </StyledLink>
+          </MenuItem>
+          <MenuItem>
+            <Badge badgeContent={0} color="primary">
+              <a href="/cart"><ShoppingCartOutlined /></a>
             </Badge>
           </MenuItem>
         </Right>

@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import { allBooks } from "../utils/data";
 import Book from "./Book";
@@ -9,14 +11,23 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-const Books = () => {
+const Books = (props) => {
+  const {category} = props
 
   return (
     <Container>
-      
-      {allBooks.map((item) => (
-        <Book item={item} key={item.id} />
-      ))}
+      {console.log(category,allBooks)}
+      {allBooks.map((item) => {
+           
+       if (category===item.category){
+        console.log(category, item.id)
+        return   <Book item={item} key={item.id} />
+       }
+       else {
+         return ""
+       }
+    
+      })}
     </Container> 
   );
 };
