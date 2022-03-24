@@ -1,7 +1,11 @@
-import React from 'react';
+import React , { useState }from 'react';
 import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import { mobile } from "../utils/responsive";
+import { useMutation } from '@apollo/client';
+import { LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 
 
 const Container = styled.div`
@@ -64,18 +68,81 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: red;
+`;
+
+const Alert = styled.span`
+  color: red;
+`;
+
+
 const Login = () => {
+  const [userFormData, setUserFormData] = useState({ username: '', password: '' });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await login({
+        variables: {...userFormData} 
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    setUserFormData({
+      username: '',
+      password: '',
+    });
+  };
+
   return (
+    
     <Container>
     
       <Wrapper>
         <Title>LOGIN - Welcome Back!</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          Something went wrong with your login credentials!
+        </Alert>
+          <Input 
+            type='text'
+            placeholder="username"
+            name="username"
+            onChange={handleInputChange}
+            value={userFormData.username}
+           />
+          
+          <Input 
+            type='password'
+            placeholder='Your password'
+            name='password'
+            onChange={handleInputChange}
+            value={userFormData.password}
+            required
+           />
+  
+          <Button
+          disabled={!(userFormData.username && userFormData.password)}
+          type='submit'
+          variant='success'>
+            LOGIN
+          </Button>
+          {error && <Error>Something went wrong...</Error>}
           <Link>FORGOT PASSWORD?</Link>
-          <Link>CREAT4E AN ACCOUNT</Link>
+          <Link to="/signup">CREATE AN ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
