@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import { mobile } from "../utils/responsive";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 
 const Container = styled.div``;
 
@@ -148,30 +150,35 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const quantity = useSelector(state=>state.cart.quantity)
   return (
     <Container>
      
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
+          <Link to="/books">
           <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag ({quantity})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
+          {cart.books.map((book) => (
             <Product>
               <ProductDetail>
-                <Image src="https://i.ibb.co/d7LM3VN/H-2.jpg" />
+                <Image src={book.img} />
                 <Details>
                   <ProductName>
-                    <b>Title:</b> The Three Mothers: How the Mothers of Martin Luther King, Jr., Malcolm X, and James Baldwin Shaped a Nation
+                    <b>Title:</b> {book.title}
                   </ProductName>
                   <ProductId>
-                    <b>ID:</b> 93813718293
+                    <b>ID:</b> {book.id}
                   </ProductId>
                   
                 </Details>
@@ -179,40 +186,20 @@ const Cart = () => {
               <PriceDetail>
                 <ProductAmountContainer>
                   <Add />
-                  <ProductAmount>1</ProductAmount>
+                  <ProductAmount>{book.quantity}</ProductAmount>
                   <Remove />
                 </ProductAmountContainer>
-                <ProductPrice>$ 15.99</ProductPrice>
+                <ProductPrice>{book.price * book.quantity}</ProductPrice>
               </PriceDetail>
             </Product>
+          ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.ibb.co/N3zWShk/H-10.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Title:</b> The Giving Tree
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 10.99</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 26.98</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -220,11 +207,11 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ 0</SummaryItemPrice>
+              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 32.88</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

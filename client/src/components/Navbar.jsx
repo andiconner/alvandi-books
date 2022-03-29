@@ -6,6 +6,7 @@ import logo from "../images/logo.svg";
 import { mobile } from '../utils/responsive';
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -85,6 +86,8 @@ const logout = event => {
 
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity)
+ 
   return (
     <Container>
       <Wrapper>
@@ -130,11 +133,13 @@ const Navbar = () => {
           </MenuItem>
         </>
         )}
+        <Link to="/cart">
           <MenuItem>
-            <Badge badgeContent={0} color="primary">
-              <a href="/cart"><ShoppingCartOutlined /></a>
+            <Badge badgeContent={quantity} color="primary">
+              <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

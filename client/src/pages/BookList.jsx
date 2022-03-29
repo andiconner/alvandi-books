@@ -5,6 +5,7 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../utils/responsive";
 import {useState } from "react";
+import { allBooks } from '../utils/data';
 //import { useQuery } from '@apollo/client';
 //import { QUERY_ALL_BOOKS } from '../utils/queries';
 
@@ -58,6 +59,7 @@ const BookList = () => {
             <Option>
               Category
             </Option>
+            
             <Option value="fiction">Fiction</Option>
             <Option value = "non-fiction">Non-Fiction</Option>
             <Option value = "kids">Kids</Option>

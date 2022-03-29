@@ -8,10 +8,10 @@ import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-//import { publicRequest } from "../requestMethods";
 import { allBooks } from "../utils/data";
 import { useParams } from 'react-router-dom'
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addBook } from '../redux/cartRedux';
 
 
 
@@ -95,23 +95,17 @@ const Button = styled.button`
   }
 `;
 
-const Book = (item) => {
+const Book = () => {
   const location = useLocation();
   const {id} = useParams ()
   // const id = location.pathname.split("/")[2];
   // const [book, setBook] = useState({});
   const book = allBooks.find(book => book.id == id);
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
  
 console.log (id)
 
-  const {
-    title,
-    authors,
-    img,
-    price,
-    //quantity
-  } = item;
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -121,16 +115,11 @@ console.log (id)
     }
   };
 
-  // const handleClick = () => {
-     // dispatch(
-    //  addBook({ ...book, quantity })
-    // );
-    const shoot = () => {
-      
-      alert("Great Shot!");
-    // dispatch(
-    //  addBook({ ...book, quantity })
-    // );
+  const handleClick = () => {
+    //update cart
+      dispatch(
+      addBook({ ...book, quantity })
+    );
   };
 
 
@@ -154,7 +143,7 @@ console.log (id)
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={shoot}>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
           </InfoContainer>
         </Wrapper>
