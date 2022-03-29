@@ -5,6 +5,7 @@ import styled from "styled-components";
 import logo from "../images/logo.svg";
 import { mobile } from '../utils/responsive';
 import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
 
 const Container = styled.div`
   height: 60px;
@@ -77,6 +78,11 @@ const StyledLink  = styled(Link)`
 ${mobile({ fontSize: "10px", marginLeft: "10px" })}
 `;
 
+const logout = event => {
+  event.preventDefault();
+  Auth.logout();
+};
+
 
 const Navbar = () => {
   return (
@@ -102,6 +108,16 @@ const Navbar = () => {
               BOOKS
             </StyledLink>
           </MenuItem>
+          {Auth.loggedIn() ? (
+        <>
+          <MenuItem>
+            <StyledLink to="/" onClick={Auth.logout}>
+              LOGOUT
+            </StyledLink>
+          </MenuItem> 
+        </>
+      ) : (
+        <>
           <MenuItem>
             <StyledLink to="/signup">
               SIGN UP
@@ -112,6 +128,8 @@ const Navbar = () => {
               SIGN IN
             </StyledLink>
           </MenuItem>
+        </>
+        )}
           <MenuItem>
             <Badge badgeContent={0} color="primary">
               <a href="/cart"><ShoppingCartOutlined /></a>

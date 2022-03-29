@@ -144,7 +144,7 @@ console.log (id)
             <Title>{book.title}</Title>
             <Authors>{book.authors}</Authors>
             <Desc>
-            {book.desc}
+            {book.description}
             </Desc>
             <Price>{book.price}</Price>
             
