@@ -1,24 +1,32 @@
 {
-  "name": "book-search-acm-new.git",
+  "name": "alvandi-books-copy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project 3 MERN website",
   "main": "server/server.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i"
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/andiconner/alvandi-books-copy.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Alvaro Calvo and Andi Conner",
   "license": "ISC",
-  "dependencies": {
-   "if-env": "^1.0.4"
+  "bugs": {
+    "url": "https://github.com/andiconner/alvandi-books-copy/issues"
   },
+  "homepage": "https://github.com/andiconner/alvandi-books-copy#readme",
   "devDependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^7.0.0",
+    "db-seed": "^1.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "react-router-dom": "^6.2.2",
+    "seed": "^0.4.4"
   }
 }

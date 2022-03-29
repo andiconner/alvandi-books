@@ -1,5 +1,10 @@
+import React , { useState }from 'react';
 import styled from "styled-components";
 import { mobile } from "../utils/responsive";
+import { useMutation } from '@apollo/client';
+import { LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 
 
 const Container = styled.div`
@@ -53,6 +58,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  background-color: #048EA9;
 `;
 
 const Link = styled.a`
@@ -62,17 +68,78 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Error = styled.span`
+  color: red;
+`;
+
+
+
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+const handleFormSubmit = async event => {
+  event.preventDefault();
+
+  try {
+    const { data } = await login({
+      variables: { ...formState }
+    });
+
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+  setFormState({
+    username: '',
+    password: '',
+  });
+};
+
   return (
+    
     <Container>
+    
       <Wrapper>
         <Title>LOGIN - Welcome Back!</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
+        <Form onSubmit={handleFormSubmit}>
+        
+          <Input 
+            type='text'
+            placeholder="username"
+            name="username"
+            onChange={handleChange}
+            value={formState.username}
+           />
+          
+          <Input 
+            type='password'
+            placeholder='Your password'
+            name='password'
+            onChange={handleChange}
+            value={formState.password}
+            required
+           />
+  
+          <Button
+          type='submit'
+          variant='success'>
+            LOGIN
+          </Button>
+          {error && <Error>Something went wrong...</Error>}
           <Link>FORGOT PASSWORD?</Link>
-          <Link>CREAT4E AN ACCOUNT</Link>
+          <Link to="/signup">CREATE AN ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

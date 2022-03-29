@@ -1,10 +1,17 @@
+import React from 'react';
+
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
+
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
+import { useState } from "react";
+import { allBooks } from "../utils/data";
+import { useParams } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { addBook } from '../redux/cartRedux';
+
 
 
 const Container = styled.div``;
@@ -23,7 +30,7 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 50%;
-  height: 80vh;
+  height: 70vh;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
 `;
@@ -88,37 +95,57 @@ const Button = styled.button`
 `;
 
 const Book = () => {
+  const {id} = useParams ()
+  const book = allBooks.find(book => book.id == id);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleClick = () => {
+    //update cart
+      dispatch(
+      addBook({ ...book, quantity })
+    );
+  };
+
+
     return (
       <Container>
-        <Navbar />
-        <Announcement />
         <Wrapper>
           <ImgContainer>
-            <Image src="https://i.ibb.co/GVWgj8J/H-1.jpg" />
+            <Image src={book.img} />
           </ImgContainer>
           <InfoContainer>
-            <Title>Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night</Title>
-            <Authors>by Julian Sancton</Authors>
+            <Title>{book.title}</Title>
+            <Authors>{book.authors}</Authors>
             <Desc>
-            Meticulously researched and realized, with a deep novelistic flare, Madhouse at the End of the Earth reconstructs the action-packed survival story of an early expedition to the South Pole. Amundson, Cook and an inexperienced, undisciplined crew, on an ill-fated ship, imprisoned in the Antarctic ice and darkness. This tale of adventure, excitement and, indeed, terror will captivate those who were drawn to The Lost City of Z, In the Kingdom of Ice and In the Heart of the Sea. Julian Sancton has gifted us an insanely gripping book from start to finish.
+            {book.description}
             </Desc>
-            <Price>$ 13.99</Price>
+            <Price>{book.price}</Price>
             
             <AddContainer>
-              <AmountContainer>
-                <Remove />
-                <Amount>1</Amount>
-                <Add />
-              </AmountContainer>
-              <Button>ADD TO CART</Button>
-            </AddContainer>
+            <AmountContainer>
+              <Remove onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity("inc")} />
+            </AmountContainer>
+            <Button onClick={handleClick}>ADD TO CART</Button>
+          </AddContainer>
           </InfoContainer>
         </Wrapper>
         <Newsletter />
         <Footer />
       </Container>
     );
-  };
+};
   
 
 export default Book;
