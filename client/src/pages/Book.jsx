@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Add, Remove } from "@material-ui/icons"; //Change Book
+import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { allBooks } from "../utils/data";
 import { useParams } from 'react-router-dom'
 import { useDispatch } from "react-redux";
@@ -98,8 +98,6 @@ const Button = styled.button`
 const Book = () => {
   const location = useLocation();
   const {id} = useParams ()
-  // const id = location.pathname.split("/")[2];
-  // const [book, setBook] = useState({});
   const book = allBooks.find(book => book.id == id);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();

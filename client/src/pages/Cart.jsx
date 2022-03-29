@@ -151,11 +151,18 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const KEY = process.env.REACT_APP_STRIPE;
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const quantity = useSelector(state=>state.cart.quantity);
   const [qty, setQty] = useState(1);
   const [subtotal, setSubtotal] = useState(0);
+  const [stripeToken, setStripeToken] = useState(null);
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
 
   const handleQty = (type) => {
     if (type === "dec") {
@@ -186,7 +193,19 @@ const Cart = () => {
             <TopText>Shopping Bag ({quantity})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <StripeCheckout
+              name="Alvandi Books"
+              image="https://i.ibb.co/nqpctJp/Asset-1-100x.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${subtotal +10}`}
+              amount={subtotal +10 * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <TopButton>CHECKOUT NOW</TopButton>
+            </StripeCheckout>
+          
         </Top>
         <Bottom>
           <Info>
@@ -232,7 +251,18 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {subtotal + 10}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+              <StripeCheckout
+              name="Alvandi Books"
+              image="https://i.ibb.co/nqpctJp/Asset-1-100x.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${subtotal +10}`}
+              amount={subtotal +10 * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>

@@ -5,9 +5,6 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../utils/responsive";
 import {useState } from "react";
-import { allBooks } from '../utils/data';
-//import { useQuery } from '@apollo/client';
-//import { QUERY_ALL_BOOKS } from '../utils/queries';
 import { useParams } from "react-router-dom"
 
 const Container = styled.div``;
@@ -47,7 +44,7 @@ const Option = styled.option``;
 
 const BookList = () => {
   const {category:name} = useParams()
-  //const { loading, data } = useQuery(QUERY_ALL_BOOKS);
+
   const [category, setCategory] = useState(name)
 
 
