@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { allBooks } from "../utils/data";
 import { useParams } from 'react-router-dom'
@@ -31,7 +30,7 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 50%;
-  height: 80vh;
+  height: 70vh;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
 `;
@@ -96,13 +95,10 @@ const Button = styled.button`
 `;
 
 const Book = () => {
-  const location = useLocation();
   const {id} = useParams ()
   const book = allBooks.find(book => book.id == id);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
- 
-console.log (id)
 
 
   const handleQuantity = (type) => {

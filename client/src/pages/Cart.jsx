@@ -158,7 +158,7 @@ const Cart = () => {
   const quantity = useSelector(state=>state.cart.quantity);
   const [qty, setQty] = useState(1);
   const [subtotal, setSubtotal] = useState(0);
-  const [stripeToken, setStripeToken] = useState(null);
+  const [ setStripeToken] = useState(null);
 
   const onToken = (token) => {
     setStripeToken(token);

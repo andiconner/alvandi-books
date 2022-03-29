@@ -114,7 +114,7 @@ const Navbar = () => {
           {Auth.loggedIn() ? (
         <>
           <MenuItem>
-            <StyledLink to="/" onClick={Auth.logout}>
+            <StyledLink to="/" onClick={logout}>
               LOGOUT
             </StyledLink>
           </MenuItem> 

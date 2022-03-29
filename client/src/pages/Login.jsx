@@ -72,9 +72,7 @@ const Error = styled.span`
   color: red;
 `;
 
-const Alert = styled.span`
-  color: red;
-`;
+
 
 
 const Login = (props) => {
