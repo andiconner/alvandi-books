@@ -39,7 +39,7 @@ const App = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/books">
+            <Route path="/books/:category">
               <BookList />
             </Route>
             <Route path="/book/:id">

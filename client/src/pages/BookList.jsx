@@ -8,12 +8,12 @@ import {useState } from "react";
 import { allBooks } from '../utils/data';
 //import { useQuery } from '@apollo/client';
 //import { QUERY_ALL_BOOKS } from '../utils/queries';
-
+import { useParams } from "react-router-dom"
 
 const Container = styled.div``;
 
 const Title = styled.h1`
-  margin: 20px;
+  margin: 20px;;
 `;
 
 const FilterContainer = styled.div`
@@ -46,8 +46,10 @@ const Option = styled.option``;
 
 
 const BookList = () => {
+  const {category:name} = useParams()
   //const { loading, data } = useQuery(QUERY_ALL_BOOKS);
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState(name)
+
 
   return (
     <Container>
@@ -56,10 +58,9 @@ const BookList = () => {
         <Filter>
           <FilterText>Filter Books:</FilterText>
           <Select value={category} onChange={(event) => setCategory(event.target.value)}>
-            <Option>
+            <Option value="all">
               Category
             </Option>
-            
             <Option value="fiction">Fiction</Option>
             <Option value = "non-fiction">Non-Fiction</Option>
             <Option value = "kids">Kids</Option>

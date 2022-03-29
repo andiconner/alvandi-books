@@ -50,7 +50,7 @@ const CategoryItem = ({ item }) => {
       <Info>
         <Title>{item.title}</Title>
         <Button>
-          <Link to="/books">
+          <Link to={"/books/"+item.cat}>
           SHOP NOW
           </Link>
         </Button>

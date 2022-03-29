@@ -4,7 +4,7 @@ export const sliderItems = [
       id: 1,
       img: "https://i.ibb.co/LrQLkRL/slide-1.png",      
       title: "A BOOK CAN TAKE YOU PLACES",
-      desc: "GET 30% OFF ON ADVENTURE BOOKS.",
+      desc: "GET 10% OFF WHEN YOU SUBSCRIBE TO OUR NEWSLETTER.",
       bg: "fbf0f4",
     },
     {

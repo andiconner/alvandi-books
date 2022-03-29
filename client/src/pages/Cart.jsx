@@ -5,7 +5,9 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import { mobile } from "../utils/responsive";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import StripeCheckout from "react-stripe-checkout";
+
 
 
 const Container = styled.div``;
@@ -151,7 +153,26 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector(state=>state.cart.quantity);
+  const [qty, setQty] = useState(1);
+  const [subtotal, setSubtotal] = useState(0);
+
+  const handleQty = (type) => {
+    if (type === "dec") {
+      qty > 1 && setQty(qty - 1);
+    } else {
+      setQty(qty + 1);
+    }
+  };
+
+  useEffect(() => {
+    let total = 0
+   cart.books.forEach(book => {
+       total = total + parseFloat(book.price.substring(1))*book.quantity
+   })
+   setSubtotal(total)
+  },[])
+
   return (
     <Container>
      
@@ -175,7 +196,7 @@ const Cart = () => {
                 <Image src={book.img} />
                 <Details>
                   <ProductName>
-                    <b>Title:</b> {book.title}
+                    <b>TITLE:</b> {book.title}
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> {book.id}
@@ -185,33 +206,31 @@ const Cart = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add />
+                  <Add onClick={() => handleQty("inc")}/>
                   <ProductAmount>{book.quantity}</ProductAmount>
-                  <Remove />
+                  <Remove onClick={() => handleQty("dec")}/>
                 </ProductAmountContainer>
-                <ProductPrice>{book.price * book.quantity}</ProductPrice>
+                <ProductPrice>{"$"}{  parseFloat(book.price.substring(1)) * parseInt(book.quantity)}</ProductPrice>
               </PriceDetail>
             </Product>
           ))}
+          {console.log(cart)}
             <Hr />
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {subtotal}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemText>Shipping</SummaryItemText>
+              <SummaryItemPrice>$ 10.00</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
+           
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {subtotal + 10}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

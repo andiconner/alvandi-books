@@ -107,7 +107,7 @@ const Navbar = () => {
         </Center>
         <Right>
           <MenuItem>
-            <StyledLink to="/books">
+            <StyledLink to="/books/all">
               BOOKS
             </StyledLink>
           </MenuItem>

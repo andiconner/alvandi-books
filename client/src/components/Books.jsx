@@ -16,16 +16,18 @@ const Books = (props) => {
   return (
     <Container>
       {console.log(category,allBooks)}
-      {allBooks.map((item) => {
-           
+      {category!="all"?allBooks.map((item) => {
+           console.log(category, item.category)
        if (category===item.category){
         console.log(category, item.id)
         return   <Book item={item} key={item.id} />
        }
        else {
-         return ""
+        return  ""
        }
     
+      }):allBooks.map(item => {
+        return <Book item={item} key={item.id} />
       })}
     </Container> 
   );
