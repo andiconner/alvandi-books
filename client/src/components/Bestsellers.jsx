@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 import { bestsellers } from "../utils/data";
 import Book from "./Book";
