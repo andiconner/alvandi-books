@@ -1,5 +1,4 @@
 import React, { useState }from 'react';
-import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import { mobile } from "../utils/responsive";
 
@@ -61,30 +60,27 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  background-color:#048EA9; 
 `;
 
 const Error = styled.span`
   color: red;
 `;
 
-const Alert = styled.span`
-  color: red;
-`;
 
 
 const Signup = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ firstName: '', lastName: '', username: '', email: '', password: '', confirmPassword: '' });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-  // define mutation for adding a user
+  const [formState, setFormState] = useState({ firstName: '', lastName: '', username: '', email: '', password: '' });
+   // define mutation for adding a user
   const [addUser, { error }] = useMutation(ADD_USER);
-
-  const handleInputChange = (event) => {
+// update state based on form input changes
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setFormState({ 
+      ...formState,
+      [name]: value,
+     });
   };
 
   const handleFormSubmit = async (event) => {
@@ -93,13 +89,12 @@ const Signup = () => {
     // check if form has everything (as per react-bootstrap docs)
     try {
       const { data } = await addUser({
-        variables: { ...userFormData }
+        variables: { ...formState }
       });
 
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
-      setShowAlert(true);
     }
 
   };
@@ -107,58 +102,54 @@ const Signup = () => {
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your signup!
-        </Alert>
+        <Form onSubmit={handleFormSubmit}>
+        
           <Input 
             placeholder="name"
-            type='name'
-            onChange={handleInputChange}
-            value={userFormData.name}
+            name='firstName'
+            type = 'text'
+            onChange={handleChange}
+            value={formState.name}
             required 
           />
           <Input 
             placeholder="last name"
-            type='last name'
-            onChange={handleInputChange}
-            value={userFormData.lastName}
+            name='lastName'
+            type = 'text'
+            onChange={handleChange}
+            value={formState.lastName}
             required  
           />
           <Input 
             placeholder="username" 
-            type='username'
-            onChange={handleInputChange}
-            value={userFormData.username}
+            name='username'
+            type = 'text'
+            onChange={handleChange}
+            value={formState.username}
             required 
             />
           <Input 
             placeholder="email" 
-            type='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
+            name='email'
+            type = 'email'
+            onChange={handleChange}
+            value={formState.email}
             required 
             />
           <Input 
             placeholder="password" 
+            name='password'
             type='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
+            onChange={handleChange}
+            value={formState.password}
             required 
             />
-          <Input 
-            placeholder="confirm password" 
-            type='confirmPassword'
-            onChange={handleInputChange}
-            value={userFormData.confirmPassword}
-            required 
-            />
+          
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button
-            disabled={!(userFormData.username && userFormData.email && userFormData.password)}
             type='submit'
             variant='success'>
             CREATE

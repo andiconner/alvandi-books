@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
@@ -110,7 +109,7 @@ const Slider = () => {
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
               <Button>
-                <Link to="/books">SHOP NOW</Link>
+                <Link to="/books/all">SHOP NOW</Link>
                 </Button>
             </InfoContainer>
           </Slide>

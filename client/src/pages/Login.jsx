@@ -1,5 +1,4 @@
 import React , { useState }from 'react';
-import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import { mobile } from "../utils/responsive";
 import { useMutation } from '@apollo/client';
@@ -59,6 +58,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  background-color: #048EA9;
 `;
 
 const Link = styled.a`
@@ -72,40 +72,40 @@ const Error = styled.span`
   color: red;
 `;
 
-const Alert = styled.span`
-  color: red;
-`;
 
 
-const Login = () => {
-  const [userFormData, setUserFormData] = useState({ username: '', password: '' });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
 
-  const handleInputChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await login({
-        variables: {...userFormData} 
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
-
-    setUserFormData({
-      username: '',
-      password: '',
+    setFormState({
+      ...formState,
+      [name]: value,
     });
   };
+
+  // submit form
+const handleFormSubmit = async event => {
+  event.preventDefault();
+
+  try {
+    const { data } = await login({
+      variables: { ...formState }
+    });
+
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+  setFormState({
+    username: '',
+    password: '',
+  });
+};
 
   return (
     
@@ -113,29 +113,26 @@ const Login = () => {
     
       <Wrapper>
         <Title>LOGIN - Welcome Back!</Title>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
+        <Form onSubmit={handleFormSubmit}>
+        
           <Input 
             type='text'
             placeholder="username"
             name="username"
-            onChange={handleInputChange}
-            value={userFormData.username}
+            onChange={handleChange}
+            value={formState.username}
            />
           
           <Input 
             type='password'
             placeholder='Your password'
             name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
+            onChange={handleChange}
+            value={formState.password}
             required
            />
   
           <Button
-          disabled={!(userFormData.username && userFormData.password)}
           type='submit'
           variant='success'>
             LOGIN

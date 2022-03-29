@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Send } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../utils/responsive";

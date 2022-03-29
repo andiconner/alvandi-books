@@ -1,11 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { useSelector } from "react-redux";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import { mobile } from "../utils/responsive";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import StripeCheckout from "react-stripe-checkout";
+
+
 
 const Container = styled.div``;
 
@@ -148,87 +151,118 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const KEY = process.env.REACT_APP_STRIPE;
+
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const quantity = useSelector(state=>state.cart.quantity);
+  const [qty, setQty] = useState(1);
+  const [subtotal, setSubtotal] = useState(0);
+  const [ setStripeToken] = useState(null);
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  const handleQty = (type) => {
+    if (type === "dec") {
+      qty > 1 && setQty(qty - 1);
+    } else {
+      setQty(qty + 1);
+    }
+  };
+
+  useEffect(() => {
+    let total = 0
+   cart.books.forEach(book => {
+       total = total + parseFloat(book.price.substring(1))*book.quantity
+   })
+   setSubtotal(total)
+  },[])
+
   return (
     <Container>
      
-      <Announcement />
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
+          <Link to="/books">
           <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag ({quantity})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <StripeCheckout
+              name="Alvandi Books"
+              image="https://i.ibb.co/nqpctJp/Asset-1-100x.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${subtotal +10}`}
+              amount={subtotal +10 * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <TopButton>CHECKOUT NOW</TopButton>
+            </StripeCheckout>
+          
         </Top>
         <Bottom>
           <Info>
+          {cart.books.map((book) => (
             <Product>
               <ProductDetail>
-                <Image src="https://i.ibb.co/d7LM3VN/H-2.jpg" />
+                <Image src={book.img} />
                 <Details>
                   <ProductName>
-                    <b>Title:</b> The Three Mothers: How the Mothers of Martin Luther King, Jr., Malcolm X, and James Baldwin Shaped a Nation
+                    <b>TITLE:</b> {book.title}
                   </ProductName>
                   <ProductId>
-                    <b>ID:</b> 93813718293
+                    <b>ID:</b> {book.id}
                   </ProductId>
                   
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
+                  <Add onClick={() => handleQty("inc")}/>
+                  <ProductAmount>{book.quantity}</ProductAmount>
+                  <Remove onClick={() => handleQty("dec")}/>
                 </ProductAmountContainer>
-                <ProductPrice>$ 15.99</ProductPrice>
+                <ProductPrice>{"$"}{  parseFloat(book.price.substring(1)) * parseInt(book.quantity)}</ProductPrice>
               </PriceDetail>
             </Product>
+          ))}
+          {console.log(cart)}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.ibb.co/N3zWShk/H-10.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Title:</b> The Giving Tree
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 10.99</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 26.98</SummaryItemPrice>
+              <SummaryItemPrice>$ {subtotal}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemText>Shipping</SummaryItemText>
+              <SummaryItemPrice>$ 10.00</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ 0</SummaryItemPrice>
-            </SummaryItem>
+           
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 32.88</SummaryItemPrice>
+              <SummaryItemPrice>$ {subtotal + 10}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+              <StripeCheckout
+              name="Alvandi Books"
+              image="https://i.ibb.co/nqpctJp/Asset-1-100x.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${subtotal +10}`}
+              amount={subtotal +10 * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>

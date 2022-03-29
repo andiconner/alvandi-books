@@ -5,6 +5,8 @@ import styled from "styled-components";
 import logo from "../images/logo.svg";
 import { mobile } from '../utils/responsive';
 import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -77,8 +79,15 @@ const StyledLink  = styled(Link)`
 ${mobile({ fontSize: "10px", marginLeft: "10px" })}
 `;
 
+const logout = event => {
+  event.preventDefault();
+  Auth.logout();
+};
+
 
 const Navbar = () => {
+  const quantity = useSelector(state=>state.cart.quantity)
+ 
   return (
     <Container>
       <Wrapper>
@@ -98,10 +107,20 @@ const Navbar = () => {
         </Center>
         <Right>
           <MenuItem>
-            <StyledLink to="/books">
+            <StyledLink to="/books/all">
               BOOKS
             </StyledLink>
           </MenuItem>
+          {Auth.loggedIn() ? (
+        <>
+          <MenuItem>
+            <StyledLink to="/" onClick={logout}>
+              LOGOUT
+            </StyledLink>
+          </MenuItem> 
+        </>
+      ) : (
+        <>
           <MenuItem>
             <StyledLink to="/signup">
               SIGN UP
@@ -112,11 +131,15 @@ const Navbar = () => {
               SIGN IN
             </StyledLink>
           </MenuItem>
+        </>
+        )}
+        <Link to="/cart">
           <MenuItem>
-            <Badge badgeContent={0} color="primary">
-              <a href="/cart"><ShoppingCartOutlined /></a>
+            <Badge badgeContent={quantity} color="primary">
+              <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>
