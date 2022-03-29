@@ -1,16 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Add, Remove } from "@material-ui/icons";
+
+import { Add, Remove } from "@material-ui/icons"; //Change Book
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
+
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../utils/responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 //import { publicRequest } from "../requestMethods";
-import { addBook } from "../redux/cartRedux";
-import { useDispatch } from "react-redux";
+import { allBooks } from "../utils/data";
+import { useParams } from 'react-router-dom'
+// import { useDispatch } from "react-redux";
+
 
 
 const Container = styled.div``;
@@ -93,22 +95,23 @@ const Button = styled.button`
   }
 `;
 
-const Book = () => {
+const Book = (item) => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
-  const [book, setBook] = useState({});
+  const {id} = useParams ()
+  // const id = location.pathname.split("/")[2];
+  // const [book, setBook] = useState({});
+  const book = allBooks.find(book => book.id == id);
   const [quantity, setQuantity] = useState(1);
-  //const dispatch = useDispatch();
+ 
+console.log (id)
 
-  //useEffect(() => {
-   // const getBook = async () => {
-    //  try {
-    //    const res = await publicRequest.get("/books/find/" + id);
-    //    setBook(res.data);
-    //  } catch {}
-   // };
-   // getBook();
-  //}, [id]);
+  const {
+    title,
+    authors,
+    img,
+    price,
+    //quantity
+  } = item;
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -118,10 +121,16 @@ const Book = () => {
     }
   };
 
-  const handleClick = () => {
-    //dispatch(
-     // addBook({ ...book, quantity })
-    //);
+  // const handleClick = () => {
+     // dispatch(
+    //  addBook({ ...book, quantity })
+    // );
+    const shoot = () => {
+      
+      alert("Great Shot!");
+    // dispatch(
+    //  addBook({ ...book, quantity })
+    // );
   };
 
 
@@ -145,7 +154,7 @@ const Book = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={shoot}>ADD TO CART</Button>
           </AddContainer>
           </InfoContainer>
         </Wrapper>

@@ -1,13 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
 import Books from "../components/Books";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../utils/responsive";
 import {useState } from "react";
+//import { useQuery } from '@apollo/client';
+//import { QUERY_ALL_BOOKS } from '../utils/queries';
 
 
 const Container = styled.div``;
@@ -44,7 +43,9 @@ const Select = styled.select`
 const Option = styled.option``;
 
 
+
 const BookList = () => {
+  //const { loading, data } = useQuery(QUERY_ALL_BOOKS);
   const [category, setCategory] = useState("")
 
   return (

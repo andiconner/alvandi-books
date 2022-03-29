@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from "styled-components";
 import { bestsellers } from "../utils/data";
 import Book from "./Book";
