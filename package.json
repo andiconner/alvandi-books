@@ -19,14 +19,6 @@
   "bugs": {
     "url": "https://github.com/andiconner/alvandi-books/issues"
   },
-  "homepage": "https://github.com/andiconner/alvandi-books#readme",
-  "devDependencies": {
-    "concurrently": "^7.0.0",
-    "db-seed": "^1.2.0"
-  },
-  "dependencies": {
-    "axios": "^0.26.1",
-    "react-router-dom": "^6.2.2",
-    "seed": "^0.4.4"
-  }
+  "homepage": "https://github.com/andiconner/alvandi-books#readme"
+  
 }
