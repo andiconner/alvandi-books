@@ -54,6 +54,10 @@ Cart Shopping
 
 <img width="2116" alt="Screen Shot 2022-03-29 at 10 54 15 PM" src="https://user-images.githubusercontent.com/91921941/160744935-e3350a43-d35a-4d5b-9cb9-2294be6e9e17.png">
 
+Payment
+<img width="2099" alt="Screen Shot 2022-03-29 at 10 55 18 PM" src="https://user-images.githubusercontent.com/91921941/160745024-5697e765-ea31-495b-8d7d-209bfc25613e.png">
+
+
 # Installation 
 * To use this app npm init has to be called to create your package.json file.
 * The necessary npm dependencies must be installed to run the application properly and can be found on the package.json file.
