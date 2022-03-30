@@ -36,15 +36,23 @@ https://user-images.githubusercontent.com/91921941/160744271-7d58900a-c7d5-4f47-
 
 
 ## Screenshots
+
+Main Page
+<img width="2099" alt="Screen Shot 2022-03-29 at 10 47 04 PM" src="https://user-images.githubusercontent.com/91921941/160744579-137a4c81-0f29-4eab-8807-bb877f2131bb.png">
+
 Book Search
-![Book Search](client/src/images/BookSearchDemo.png)
+<img width="2092" alt="Screen Shot 2022-03-29 at 10 51 49 PM" src="https://user-images.githubusercontent.com/91921941/160744765-ee5392d8-51e5-4675-b750-eda3299d5051.png">
 
 Login Form
-![login Form](client/src/images/login_form.png)
+<img width="2096" alt="Screen Shot 2022-03-29 at 10 49 29 PM" src="https://user-images.githubusercontent.com/91921941/160744802-0aeba30d-e570-44c8-ad6a-0a5de5d65a82.png">
 
 Books to Save when logged in
-![Books to Save](client/src/images/login_save_book.png)
+<img width="2120" alt="Screen Shot 2022-03-29 at 10 53 02 PM" src="https://user-images.githubusercontent.com/91921941/160744853-5da462d9-ed4e-4053-ab40-644072ffb1ed.png">
 
+
+Cart Shopping
+
+<img width="2116" alt="Screen Shot 2022-03-29 at 10 54 15 PM" src="https://user-images.githubusercontent.com/91921941/160744935-e3350a43-d35a-4d5b-9cb9-2294be6e9e17.png">
 
 # Installation 
 * To use this app npm init has to be called to create your package.json file.
