@@ -37,7 +37,7 @@ https://user-images.githubusercontent.com/91921941/160744271-7d58900a-c7d5-4f47-
 
   If you have trouble watching the demo video, please use this link:
   ```
-https://drive.google.com/file/d/1lyrgXcGtVe_2x22BlrzXK0uMh02NxtLj/preview" width="640" height="480">
+https://drive.google.com/file/d/1lyrgXcGtVe_2x22BlrzXK0uMh02NxtLj/preview
 ```
 
 
