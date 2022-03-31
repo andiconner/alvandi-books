@@ -186,7 +186,7 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <Link to="/books">
+          <Link to="/books/all">
           <TopButton>CONTINUE SHOPPING</TopButton>
           </Link>
           <TopTexts>
