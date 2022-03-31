@@ -78,7 +78,9 @@ import {
         <Info>
         
           <Icon>
+          <Link to={`/cart/${item.id}`}>
             <ShoppingCartOutlined />
+            </Link>
           </Icon>
           <Icon>
             <Link to={`/book/${item.id}`}>
