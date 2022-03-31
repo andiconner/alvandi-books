@@ -1,15 +1,14 @@
 # Alvandi Books
 
 ## Summary
+ALVANDI Books is an online bookstore. A platform where we sell second-hand books at a discounted rate. Our main target market are the avid reader and kids.
 
-
-
+We have a high quality standards when it comes to the selection of  our books. They must “look like” NEW. We buy our books on local garage sales and flea markets to showcase to the world on our online shelf!
 
 ## Table of Contents 
 * [Summary](#summary)
 * [Tools Used](#tools-used)
 * [Screenshots](#screenshots)
-* [Installation](#installation)
 * [Heroku](#heroku)
 * [Questions](#questions)
 
@@ -64,21 +63,9 @@ Payment
 <img width="2099" alt="Screen Shot 2022-03-29 at 10 55 18 PM" src="https://user-images.githubusercontent.com/91921941/160745024-5697e765-ea31-495b-8d7d-209bfc25613e.png">
 
 
-# Installation 
-* To use this app npm init has to be called to create your package.json file.
-* The necessary npm dependencies must be installed to run the application properly and can be found on the package.json file.
-* To properly install the database you must create a cluster on Mongodb atlas.
-* Run "npm start" for the port to start listening with mongoose.
-* This app is deployed on Heroku
-
-
 # Heroku
 [Heroku URL](https://git.heroku.com/alvandi-books.git)
 
 
 ## Questions?
-If you have any questions about the repo, please send an to [Alvaro](mailto:) or [Andi](mailto:andiconner@icloud.com). You can find more of my work at  [Alvaro gitub profile page](https://github.com/) or [Andi gitub profile page](https://github.com/andiconner)
-<<<<<<< HEAD
-
-=======
->>>>>>> 5866e2b77137c2e37aa1e09bad51401983be3523
+If you have any questions about the repo, please send an to [Alvaro](mailto:acmcalvo@yahoo.com) or [Andi](mailto:andiconner@icloud.com). You can find more of my work at  [Alvaro gitub profile page](https://github.com/acmcalvo) or [Andi gitub profile page](https://github.com/andiconner)
