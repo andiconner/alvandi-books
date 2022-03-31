@@ -78,4 +78,7 @@ Payment
 
 ## Questions?
 If you have any questions about the repo, please send an to [Alvaro](mailto:) or [Andi](mailto:andiconner@icloud.com). You can find more of my work at  [Alvaro gitub profile page](https://github.com/) or [Andi gitub profile page](https://github.com/andiconner)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5866e2b77137c2e37aa1e09bad51401983be3523
