@@ -9,7 +9,7 @@ We have a high quality standards when it comes to the selection of  our books. T
 * [Summary](#summary)
 * [Tools Used](#tools-used)
 * [Screenshots](#screenshots)
-* [Heroku](#heroku)
+* [Vercel](#vercel)
 * [Questions](#questions)
 
 ## Tools Used
@@ -26,7 +26,7 @@ We have a high quality standards when it comes to the selection of  our books. T
 * JWT for authentication
 * Styled Components
 * Dotenv
-* Heroku
+* Vercel
 
 ## Screenshots
 
@@ -63,8 +63,8 @@ Payment
 <img width="2099" alt="Screen Shot 2022-03-29 at 10 55 18 PM" src="https://user-images.githubusercontent.com/91921941/160745024-5697e765-ea31-495b-8d7d-209bfc25613e.png">
 
 
-# Heroku
-[Heroku URL](https://git.heroku.com/alvandi-books.git)
+# VERCEL
+[Heroku URL](https://alvandi-books-fronnt.vercel.app/)
 
 
 ## Questions?
