@@ -64,7 +64,7 @@ Payment
 
 
 # VERCEL
-[Heroku URL](https://alvandi-books-fronnt.vercel.app/)
+[Vercel URL](https://alvandi-books-fronnt.vercel.app/)
 
 
 ## Questions?
